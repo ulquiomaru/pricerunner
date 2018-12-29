@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_barcode"
+        android:checked="true"
+        android:icon="@drawable/vector_barcode_scan"
+        android:title="@string/tab1"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_product"
+        android:checked="false"
+        android:icon="@drawable/vector_list"
+        android:title="@string/tab2"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_about"
+        android:checked="false"
+        android:icon="@drawable/vector_about_outline"
+        android:title="@string/tab3"
+        app:showAsAction="ifRoom" />
+
+</menu>
