@@ -14,27 +14,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private final List<Fragment> fragmentList = new ArrayList<>();
 
-//    private final BarcodeFragment barcodeFragment = new BarcodeFragment();
-//    private final AboutFragment aboutFragment = new AboutFragment();
-
     ViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
-
-//    @Override
-//    public Fragment getItem(int position) {
-//        switch (position) {
-//            case 1:
-//                return ProductFragment.newInstance();
-//                break;
-//            case 2:
-//                return aboutFragment;
-//                break;
-//            default: // also case 0
-//                return barcodeFragment;
-//                break;
-//        }
-//    }
 
     @Override
     public Fragment getItem(int position) {
