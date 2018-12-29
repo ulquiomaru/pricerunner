@@ -6,6 +6,7 @@
 
     <ImageView
         android:src="@drawable/vector_barcode"
+        android:tint="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:scaleType="fitCenter"
@@ -21,6 +22,8 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
-        android:hint="@string/barcode_input_hint" />
+        android:hint="@string/barcode_input_hint">
+        <requestFocus/>
+    </EditText>
 
 </android.support.v7.widget.LinearLayoutCompat>

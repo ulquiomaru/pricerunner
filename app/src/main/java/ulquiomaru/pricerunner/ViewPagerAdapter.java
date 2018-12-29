@@ -1,13 +1,16 @@
 package ulquiomaru.pricerunner;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private final List<Fragment> fragmentList = new ArrayList<>();
 
@@ -43,12 +46,19 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return fragmentList.size();
     }
 
-    void addFragment(Fragment fragment) {
-        fragmentList.add(fragment);
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return PagerAdapter.POSITION_NONE;
     }
 
-    void newProduct(ProductFragment productFragment) {
-        fragmentList.set(1, productFragment);
+    void init() {
+        fragmentList.add(new BarcodeFragment());
+        fragmentList.add(ProductFragment.newInstance(null));
+        fragmentList.add(new AboutFragment());
+    }
+
+    void newProduct(String barcodeNumber) {
+        fragmentList.set(1, ProductFragment.newInstance(barcodeNumber));
     }
 
 }

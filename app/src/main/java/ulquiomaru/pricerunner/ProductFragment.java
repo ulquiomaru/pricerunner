@@ -17,12 +17,11 @@ public class ProductFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_product, container, false);
-        TextView textView = rootView.findViewById(R.id.tvBarcode);
-        textView.setText("Barcode Number: " + getArguments().getString(ARG_BARCODE_NUMBER, null));
-
+        TextView tvBarcode = rootView.findViewById(R.id.tvBarcode);
+        String barcodeNumber = getArguments().getString(ARG_BARCODE_NUMBER, null);
+        tvBarcode.setText("Barcode Number: " + barcodeNumber);
 
 
 

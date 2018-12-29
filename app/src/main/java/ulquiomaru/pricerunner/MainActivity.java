@@ -2,6 +2,7 @@ package ulquiomaru.pricerunner;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -27,13 +28,14 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private MenuItem prevMenuItem;
     private ViewPager viewPager;
+    public ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewPager = findViewById(R.id.container);
+        viewPager = findViewById(R.id.fragmentContainer);
         bottomNavigationView = findViewById(R.id.navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
@@ -73,16 +75,28 @@ public class MainActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {  }
         });
 
-        setupViewPager(viewPager);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.init();
+        viewPager.setAdapter(viewPagerAdapter);
 
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new BarcodeFragment());
-        adapter.addFragment(ProductFragment.newInstance(null));
-        adapter.addFragment(new AboutFragment());
-        viewPager.setAdapter(adapter);
+    void newProduct(String barcodeNumber) {
+//        viewPager.setCurrentItem(1);
+//        loadFragment(ProductFragment.newInstance(barcodeNumber));
+        viewPagerAdapter.newProduct(barcodeNumber);
+        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setCurrentItem(1);
     }
 
+    private void loadFragment(Fragment fragment) {
+        if (fragment != null) {
+            FragmentManager fm = getSupportFragmentManager();
+            if (fm != null) {
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.fragmentContainer, fragment);
+                ft.commit();
+            }
+        }
+    }
 }
