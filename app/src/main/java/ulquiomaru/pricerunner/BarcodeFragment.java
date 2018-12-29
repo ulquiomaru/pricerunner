@@ -3,7 +3,9 @@ package ulquiomaru.pricerunner;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
@@ -11,6 +13,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class BarcodeFragment extends Fragment {
 
@@ -58,11 +64,39 @@ public class BarcodeFragment extends Fragment {
             }
         });
 
-
+        btnScan.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator barcodeScanner = new IntentIntegrator(activity);
+                barcodeScanner.setBeepEnabled(false);
+                barcodeScanner.setOrientationLocked(false);
+                barcodeScanner.setPrompt("Align the barcode inside the view area");
+                barcodeScanner.initiateScan();
+            }
+        });
 
 
 
         return rootView;
     }
 
+//    public void scanBarcode() {
+//        IntentIntegrator.forSupportFragment(this).setBeepEnabled(false).initiateScan();
+//    }
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+//        if(result != null) {
+//            if(result.getContents() == null) {
+//                Toast.makeText(activity, "Cancelled", Toast.LENGTH_LONG).show();
+//            } else {
+//                String barcode = result.getContents();
+//                Toast.makeText(activity, "Scanned: " + barcode, Toast.LENGTH_LONG).show();
+//                activity.newProduct(barcode);
+//            }
+//        } else {
+//            super.onActivityResult(requestCode, resultCode, data);
+//        }
+//    }
 }
