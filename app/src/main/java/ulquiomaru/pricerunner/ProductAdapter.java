@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
-    private String[] mDataset;
+    private ArrayList<Product> mDataset;
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView mTextView;
@@ -17,7 +19,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
     }
 
-    public ProductAdapter(String[] myDataset) {
+    ProductAdapter(ArrayList<Product> myDataset) {
         mDataset = myDataset;
     }
 
@@ -33,11 +35,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        holder.mTextView.setText(mDataset[position]);
+        holder.mTextView.setText(mDataset.get(position).toString());
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 }
