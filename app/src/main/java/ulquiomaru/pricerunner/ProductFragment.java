@@ -127,7 +127,7 @@ public class ProductFragment extends Fragment {
                 }
 
                 rvProducts.setLayoutManager(new LinearLayoutManager(requireActivity()));
-                rvProducts.setAdapter(new ProductAdapter(productList));
+                rvProducts.setAdapter(new ProductAdapter(productList, requireActivity()));
             }
         }
     }

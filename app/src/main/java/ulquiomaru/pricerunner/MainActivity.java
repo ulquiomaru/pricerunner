@@ -1,19 +1,20 @@
 package ulquiomaru.pricerunner;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
-
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.newProduct(barcodeNumber);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(1);
+    }
+
+    void searchProduct(String productName) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.format(Locale.getDefault(), "https://www.akakce.com/arama/?q=%s", productName))));
     }
 
     @Override
