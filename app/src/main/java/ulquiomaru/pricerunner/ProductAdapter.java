@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private ArrayList<Product> mDataset;
@@ -18,18 +19,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     static class ProductViewHolder extends RecyclerView.ViewHolder {
 
         ConstraintLayout mLayout;
-//        TextView tvName;
-//        TextView tvPrice;
-//        TextView tvBarcode;
-//        TextView tvSource;
 
         ProductViewHolder(ConstraintLayout layout) {
             super(layout);
             mLayout = layout;
-//            tvName = (TextView) layout.getViewById(R.id.tvName);
-//            tvPrice = (TextView) layout.getViewById(R.id.tvPrice);
-//            tvBarcode = (TextView) layout.getViewById(R.id.tvBarcode);
-//            tvSource = (TextView) layout.getViewById(R.id.tvSource);
         }
     }
 
@@ -43,7 +36,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public ProductAdapter.ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ConstraintLayout v = (ConstraintLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.product_view, parent, false);
-        // ...
         return new ProductViewHolder(v);
     }
 
@@ -51,19 +43,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull final ProductViewHolder holder, final int position) {
         Product product = mDataset.get(position);
-        ((TextView)holder.mLayout.getViewById(R.id.tvName)).setText(product.getName());
-        ((TextView)holder.mLayout.getViewById(R.id.tvPrice)).setText(product.getPrice());
-        ((TextView)holder.mLayout.getViewById(R.id.tvBarcode)).setText(product.getBarcode());
-        ((TextView)holder.mLayout.getViewById(R.id.tvSource)).setText(product.getSource());
-//        holder.tvName.setText(product.getName());
-//        holder.tvPrice.setText(product.getPrice());
-//        holder.tvBarcode.setText(product.getBarcode());
-//        holder.tvSource.setText(product.getSource());
+        ((TextView)holder.mLayout.getViewById(R.id.tvName)).setText(String.format(Locale.getDefault(), "Product: %s", product.getName()));
+        ((TextView)holder.mLayout.getViewById(R.id.tvPrice)).setText(String.format(Locale.getDefault(), "Price: %s", product.getPrice()));
+        ((TextView)holder.mLayout.getViewById(R.id.tvBarcode)).setText(String.format(Locale.getDefault(), "Barcode: %s", product.getBarcode()));
+        ((TextView)holder.mLayout.getViewById(R.id.tvSource)).setText(String.format(Locale.getDefault(), "Source: %s", product.getSource()));
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mContext instanceof MainActivity)
+                if (mContext instanceof MainActivity) {
                     ((MainActivity) mContext).searchProduct(mDataset.get(holder.getAdapterPosition()).getName());
+                }
             }
         });
     }
