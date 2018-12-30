@@ -87,24 +87,30 @@ public class ProductFragment extends Fragment {
         }
     }
 
-    private class jSOUPAsyncTask extends AsyncTask<String, Void, String> {
+    private class jSOUPAsyncTask extends AsyncTask<String, Void, Document> {
         @Override
-        protected String doInBackground(String... urls) {
+        protected Document doInBackground(String... urls) {
             try {
-                Document doc = Jsoup.connect("http://en.wikipedia.org/").get();
-                return doc.text();
+                Document doc = Jsoup.connect(urls[0]).get();
+                return doc;
             } catch (IOException e) {
-                return "Unable to retrieve web page. URL may be invalid." + urls[0];
+                return null;
             }
         }
 
         @Override
-        protected void onPostExecute(String result) {
-//            try { if (isAdded()) JSONParser(result); }
-//            catch (JSONException e) { e.printStackTrace(); }
-
-            try { tvBarcode.setText(result); }
-            catch (Exception e) { e.printStackTrace(); }
+        protected void onPostExecute(Document doc) {
+            parseDocument(doc);
         }
+    }
+
+    private void parseDocument(Document document) {
+        if (document == null) {
+//            Toast.makeText(requireActivity(), )
+        }
+        else {
+            if (isAdded()) tvBarcode.setText(document.text());
+        }
+
     }
 }
