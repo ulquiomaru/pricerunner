@@ -10,4 +10,6 @@
     <string name="scan_barcode">Scan Barcode</string>
     <string name="input_barcode">Input Barcode</string>
     <string name="barcode_initial">No Barcode Provided Yet</string>
+    <string name="github">GitHub</string>
+    <string name="about_description">Developed\nby\n\nBarış Görgülü\n\n\nfor\n\n\nCSE 476\n\nMobile Application Development\n\nTerm Project</string>
 </resources>

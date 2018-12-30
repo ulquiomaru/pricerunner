@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,13 +31,6 @@ public class ProductFragment extends Fragment {
     private static final String idResultCount = "ContentPlaceHolder1_UcBarkodGetir_lblCount";
     private static final String classElement = "col-xs-24 col-sm-24 col-md-9 excerpet";
     private static final String hrefName = "a[href]";
-    private static final String classBarcode = "fa fa-barcode";
-    private static final String classPrice = "glyphicon glyphicon-calendar";
-    private static final String classTimeValidated = "glyphicon glyphicon-time";
-    private static final String classSource = "glyphicon glyphicon-tags";
-    private static final String idOrigin = "ContentPlaceHolder1_UcBarkodGetir_lblMensei";
-    private static final String idProducerCode = "ContentPlaceHolder1_UcBarkodGetir_lblUretici";
-    private static final String idProductCode = "ContentPlaceHolder1_UcBarkodGetir_lblUrun";
 
     TextView tvBarcode;
     RecyclerView rvProducts;
@@ -62,7 +54,6 @@ public class ProductFragment extends Fragment {
                 else {
                     rvProducts = rootView.findViewById(R.id.rvProducts);
                     Toast.makeText(requireActivity(), String.format(Locale.getDefault(),"Searching Barcode %s", barcodeNumber), Toast.LENGTH_SHORT).show();
-//                    tvBarcode.append("\nSearching.."); // debug
                     new jSOUPAsyncTask().execute(String.format(Locale.getDefault(), urlBarkodoku, barcodeNumber));
                 }
             }
