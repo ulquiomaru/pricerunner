@@ -9,4 +9,5 @@
     <string name="barcode_input_hint">Enter barcode number</string>
     <string name="scan_barcode">Scan Barcode</string>
     <string name="input_barcode">Input Barcode</string>
+    <string name="barcode_initial">No Barcode Provided Yet</string>
 </resources>

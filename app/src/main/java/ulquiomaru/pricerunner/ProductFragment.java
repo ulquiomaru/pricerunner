@@ -43,7 +43,7 @@ public class ProductFragment extends Fragment {
                     Toast.makeText(requireActivity(), "INTERNET unavailable!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    tvBarcode.append("\nSearching.."); // debug
+//                    tvBarcode.append("\nSearching.."); // debug
 //                    new HTTPAsyncTask().execute(String.format(Locale.getDefault(), Util.urlBarkodoku, barcodeNumber));
                     new jSOUPAsyncTask().execute(String.format(Locale.getDefault(), Util.urlBarkodoku, barcodeNumber));
                 }
