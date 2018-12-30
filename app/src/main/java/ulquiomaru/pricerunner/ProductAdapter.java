@@ -2,6 +2,7 @@ package ulquiomaru.pricerunner;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +17,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mTextView;
+        ConstraintLayout mLayout;
+//        TextView tvName;
+//        TextView tvPrice;
+//        TextView tvBarcode;
+//        TextView tvSource;
 
-        ProductViewHolder(TextView v) {
-            super(v);
-            mTextView = v;
+        ProductViewHolder(ConstraintLayout layout) {
+            super(layout);
+            mLayout = layout;
+//            tvName = (TextView) layout.getViewById(R.id.tvName);
+//            tvPrice = (TextView) layout.getViewById(R.id.tvPrice);
+//            tvBarcode = (TextView) layout.getViewById(R.id.tvBarcode);
+//            tvSource = (TextView) layout.getViewById(R.id.tvSource);
         }
     }
 
@@ -33,7 +42,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @NonNull
     @Override
     public ProductAdapter.ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        TextView v = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.product_view, parent, false);
+        ConstraintLayout v = (ConstraintLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.product_view, parent, false);
         // ...
         return new ProductViewHolder(v);
     }
@@ -41,8 +50,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(@NonNull final ProductViewHolder holder, final int position) {
-        holder.mTextView.setText(mDataset.get(position).toString());
-        holder.mTextView.setOnClickListener(new View.OnClickListener() {
+        Product product = mDataset.get(position);
+        ((TextView)holder.mLayout.getViewById(R.id.tvName)).setText(product.getName());
+        ((TextView)holder.mLayout.getViewById(R.id.tvPrice)).setText(product.getPrice());
+        ((TextView)holder.mLayout.getViewById(R.id.tvBarcode)).setText(product.getBarcode());
+        ((TextView)holder.mLayout.getViewById(R.id.tvSource)).setText(product.getSource());
+//        holder.tvName.setText(product.getName());
+//        holder.tvPrice.setText(product.getPrice());
+//        holder.tvBarcode.setText(product.getBarcode());
+//        holder.tvSource.setText(product.getSource());
+        holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mContext instanceof MainActivity)
