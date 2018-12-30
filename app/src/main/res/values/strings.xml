@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Price Runner</string>
-
-    <string name="asfdsd">Barcode Number: %s</string>
-
     <string name="tab1">Barcode</string>
     <string name="tab2">Product</string>
     <string name="tab3">About</string>

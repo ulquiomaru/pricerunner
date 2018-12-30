@@ -15,17 +15,6 @@ public class Product {
 
     Product() { }
 
-    Product(String name, String barcode, String price, String source, String timeValidated, String origin, String producerCode, String productCode) {
-        this.name = name;
-        this.barcode = barcode;
-        this.price = price;
-        this.source = source;
-        this.timeValidated = timeValidated;
-        this.origin = origin;
-        this.producerCode = producerCode;
-        this.productCode = productCode;
-    }
-
     void setName(String name) {
         this.name = name;
     }

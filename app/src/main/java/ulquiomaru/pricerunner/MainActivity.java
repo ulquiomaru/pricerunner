@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navigation;
     private MenuItem prevMenuItem;
     private ViewPager viewPager;
+    private static final String urlSearch = "https://www.akakce.com/arama/?q=%s";
     public ViewPagerAdapter adapter;
 
     @Override
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void searchProduct(String productName) {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.format(Locale.getDefault(), "https://www.akakce.com/arama/?q=%s", productName))));
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.format(Locale.getDefault(), urlSearch, productName))));
     }
 
     @Override
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Scan Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 String barcode = result.getContents();
-                Toast.makeText(this, "Scan Complete: " + barcode + "\nSearching...", Toast.LENGTH_LONG).show(); // TODO: Searching for barcode yazsın
+                Toast.makeText(this, "Scan Complete: " + barcode + "\nSearching...", Toast.LENGTH_LONG).show();
                 newProduct(barcode);
             }
         } else {

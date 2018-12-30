@@ -76,24 +76,4 @@ public class BarcodeFragment extends Fragment {
 
         return rootView;
     }
-
-//    public void scanBarcode() {
-//        IntentIntegrator.forSupportFragment(this).setBeepEnabled(false).initiateScan();
-//    }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-//        if(result != null) {
-//            if(result.getContents() == null) {
-//                Toast.makeText(activity, "Cancelled", Toast.LENGTH_LONG).show();
-//            } else {
-//                String barcode = result.getContents();
-//                Toast.makeText(activity, "Scanned: " + barcode, Toast.LENGTH_LONG).show();
-//                activity.newProduct(barcode);
-//            }
-//        } else {
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
-//    }
 }
